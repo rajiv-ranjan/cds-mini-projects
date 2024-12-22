@@ -1,9 +1,9 @@
 [project]
-name = "mini-project-1"
+name = "cds-mini-projects"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.13"
 dependencies = [
     "ipykernel>=6.29.5",
     "ipython>=8.31.0",
