@@ -8,4 +8,5 @@ dependencies = [
     "ipykernel>=6.29.5",
     "seaborn>=0.13.2",
     "xverse>=1.0.5",
+    "pandas==1.3.5",
 ]
