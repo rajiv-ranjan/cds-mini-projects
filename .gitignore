@@ -167,4 +167,4 @@ cython_debug/
 
 .vscode/
 
-.zip
+*.zip
