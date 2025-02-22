@@ -9,6 +9,7 @@ dependencies = [
     "keras>=3.8.0",
     "matplotlib>=3.10.0",
     "pandas>=2.2.3",
+    "pillow>=11.1.0",
     "scikit-image>=0.25.2",
     "scikit-learn>=1.6.1",
     "tensorflow>=2.18.0",
