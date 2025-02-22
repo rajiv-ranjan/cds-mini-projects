@@ -168,3 +168,5 @@ cython_debug/
 .vscode/
 
 *.zip
+
+FullIJCNN2013

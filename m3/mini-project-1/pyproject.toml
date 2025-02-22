@@ -1,0 +1,16 @@
+[project]
+name = "mini-project-1"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "ipykernel>=6.29.5",
+    "keras>=2.14.0",
+    "matplotlib>=3.10.0",
+    "numpy>=2.2.3",
+    "pandas>=2.2.3",
+    "scikit-image>=0.25.2",
+    "scikit-learn>=1.6.1",
+    "tensorflow>=2.14.0",
+]
