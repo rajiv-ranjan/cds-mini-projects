@@ -12,5 +12,6 @@ dependencies = [
     "pillow>=11.1.0",
     "scikit-image>=0.25.2",
     "scikit-learn>=1.6.1",
+    "seaborn>=0.13.2",
     "tensorflow>=2.18.0",
 ]
