@@ -172,3 +172,10 @@ cython_debug/
 FullIJCNN2013
 MP2_FaceMask_Dataset
 Actions
+preprocessed_videos
+Actions_temp
+
+
+*.h5
+*.keras
+
