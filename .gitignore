@@ -179,3 +179,4 @@ Actions_temp
 *.h5
 *.keras
 
+*.npy
