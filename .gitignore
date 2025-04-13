@@ -164,3 +164,19 @@ cython_debug/
 
 .DS_Store
 .DS_Store?
+
+.vscode/
+
+*.zip
+
+FullIJCNN2013
+MP2_FaceMask_Dataset
+Actions
+preprocessed_videos
+Actions_temp
+
+
+*.h5
+*.keras
+
+*.npy
