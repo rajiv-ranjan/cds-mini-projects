@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect x="0" y="0" width="900" height="600" fill="#f8f9fa"/>
+  
+  <!-- Title -->
+  <text x="450" y="40" font-family="Arial" font-size="24" font-weight="bold" text-anchor="middle">Multicore vs Multi-processor System Architecture</text>
+  
+  <!-- Multicore System -->
+  <rect x="100" y="80" width="300" height="450" rx="10" fill="#e6f2ff" stroke="#0066cc" stroke-width="2"/>
+  <text x="250" y="110" font-family="Arial" font-size="20" font-weight="bold" text-anchor="middle">Multicore System</text>
+  
+  <!-- CPU Package -->
+  <rect x="130" y="130" width="240" height="350" rx="5" fill="#b3d9ff" stroke="#0066cc" stroke-width="2"/>
+  <text x="250" y="155" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle">Single CPU Package</text>
+  
+  <!-- Cores -->
+  <rect x="150" y="170" width="90" height="140" rx="5" fill="#ffffff" stroke="#0066cc" stroke-width="2"/>
+  <text x="195" y="190" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle">Core 1</text>
+  <rect x="160" y="200" width="70" height="30" rx="3" fill="#ffcc99" stroke="#ff6600" stroke-width="1"/>
+  <text x="195" y="220" font-family="Arial" font-size="10" text-anchor="middle">Execution Units</text>
+  <rect x="160" y="240" width="70" height="25" rx="3" fill="#ffcc99" stroke="#ff6600" stroke-width="1"/>
+  <text x="195" y="257" font-family="Arial" font-size="10" text-anchor="middle">Registers</text>
+  <rect x="160" y="275" width="70" height="25" rx="3" fill="#ffcc99" stroke="#ff6600" stroke-width="1"/>
+  <text x="195" y="292" font-family="Arial" font-size="10" text-anchor="middle">L1 Cache</text>
+  
+  <rect x="260" y="170" width="90" height="140" rx="5" fill="#ffffff" stroke="#0066cc" stroke-width="2"/>
+  <text x="305" y="190" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle">Core 2</text>
+  <rect x="270" y="200" width="70" height="30" rx="3" fill="#ffcc99" stroke="#ff6600" stroke-width="1"/>
+  <text x="305" y="220" font-family="Arial" font-size="10" text-anchor="middle">Execution Units</text>
+  <rect x="270" y="240" width="70" height="25" rx="3" fill="#ffcc99" stroke="#ff6600" stroke-width="1"/>
+  <text x="305" y="257" font-family="Arial" font-size="10" text-anchor="middle">Registers</text>
+  <rect x="270" y="275" width="70" height="25" rx="3" fill="#ffcc99" stroke="#ff6600" stroke-width="1"/>
+  <text x="305" y="292" font-family="Arial" font-size="10" text-anchor="middle">L1 Cache</text>
+  
+  <!-- Shared Components -->
+  <rect x="150" y="330" width="200" height="30" rx="3" fill="#c6ecc6" stroke="#339933" stroke-width="2"/>
+  <text x="250" y="350" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle">Shared L2/L3 Cache</text>
+  
+  <rect x="150" y="370" width="200" height="30" rx="3" fill="#c6ecc6" stroke="#339933" stroke-width="2"/>
+  <text x="250" y="390" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle">Shared Memory Controller</text>
+  
+  <rect x="150" y="410" width="200" height="30" rx="3" fill="#c6ecc6" stroke="#339933" stroke-width="2"/>
+  <text x="250" y="430" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle">Shared I/O Controllers</text>
+  
+  <!-- System Memory -->
+  <rect x="130" y="490" width="240" height="30" rx="5" fill="#d9d9f3" stroke="#6666cc" stroke-width="2"/>
+  <text x="250" y="510" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle">System Memory (RAM)</text>
+  
+  <!-- Multi-processor System -->
+  <rect x="500" y="80" width="300" height="450" rx="10" fill="#ffeee6" stroke="#cc6633" stroke-width="2"/>
+  <text x="650" y="110" font-family="Arial" font-size="20" font-weight="bold" text-anchor="middle">Multi-processor System</text>
+  
+  <!-- CPU Package 1 -->
+  <rect x="520" y="130" width="120" height="220" rx="5" fill="#ffccb3" stroke="#cc6633" stroke-width="2"/>
+  <text x="580" y="150" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle">CPU Package 1</text>
+  
+  <!-- Cores in CPU 1 -->
+  <rect x="530" y="160" width="100" height="70" rx="5" fill="#ffffff" stroke="#cc6633" stroke-width="1"/>
+  <text x="580" y="180" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle">Core(s)</text>
+  <rect x="540" y="190" width="80" height="30" rx="3" fill="#ffcc99" stroke="#ff6600" stroke-width="1"/>
+  <text x="580" y="210" font-family="Arial" font-size="10" text-anchor="middle">Execution Units</text>
+  
+  <!-- CPU 1 Components -->
+  <rect x="530" y="240" width="100" height="25" rx="3" fill="#ffcc99" stroke="#ff6600" stroke-width="1"/>
+  <text x="580" y="257" font-family="Arial" font-size="10" text-anchor="middle">Local Cache</text>
+  
+  <rect x="530" y="275" width="100" height="25" rx="3" fill="#ffcc99" stroke="#ff6600" stroke-width="1"/>
+  <text x="580" y="292" font-family="Arial" font-size="10" text-anchor="middle">Memory Controller</text>
+  
+  <rect x="530" y="310" width="100" height="25" rx="3" fill="#ffcc99" stroke="#ff6600" stroke-width="1"/>
+  <text x="580" y="327" font-family="Arial" font-size="10" text-anchor="middle">I/O Controller</text>
+  
+  <!-- CPU Package 2 -->
+  <rect x="660" y="130" width="120" height="220" rx="5" fill="#ffccb3" stroke="#cc6633" stroke-width="2"/>
+  <text x="720" y="150" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle">CPU Package 2</text>
+  
+  <!-- Cores in CPU 2 -->
+  <rect x="670" y="160" width="100" height="70" rx="5" fill="#ffffff" stroke="#cc6633" stroke-width="1"/>
+  <text x="720" y="180" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle">Core(s)</text>
+  <rect x="680" y="190" width="80" height="30" rx="3" fill="#ffcc99" stroke="#ff6600" stroke-width="1"/>
+  <text x="720" y="210" font-family="Arial" font-size="10" text-anchor="middle">Execution Units</text>
+  
+  <!-- CPU 2 Components -->
+  <rect x="670" y="240" width="100" height="25" rx="3" fill="#ffcc99" stroke="#ff6600" stroke-width="1"/>
+  <text x="720" y="257" font-family="Arial" font-size="10" text-anchor="middle">Local Cache</text>
+  
+  <rect x="670" y="275" width="100" height="25" rx="3" fill="#ffcc99" stroke="#ff6600" stroke-width="1"/>
+  <text x="720" y="292" font-family="Arial" font-size="10" text-anchor="middle">Memory Controller</text>
+  
+  <rect x="670" y="310" width="100" height="25" rx="3" fill="#ffcc99" stroke="#ff6600" stroke-width="1"/>
+  <text x="720" y="327" font-family="Arial" font-size="10" text-anchor="middle">I/O Controller</text>
+  
+  <!-- Interconnect -->
+  <rect x="520" y="370" width="260" height="30" rx="3" fill="#c6ecc6" stroke="#339933" stroke-width="2"/>
+  <text x="650" y="390" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle">System Interconnect (Bus)</text>
+  
+  <!-- Shared Components -->
+  <rect x="520" y="410" width="260" height="30" rx="3" fill="#c6ecc6" stroke="#339933" stroke-width="2"/>
+  <text x="650" y="430" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle">Shared I/O Devices</text>
+  
+  <!-- System Memory -->
+  <rect x="520" y="450" width="260" height="30" rx="3" fill="#c6ecc6" stroke="#339933" stroke-width="2"/>
+  <text x="650" y="470" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle">Shared System Memory</text>
+  
+  <!-- Legend -->
+  <rect x="300" y="550" width="20" height="15" fill="#ffcc99" stroke="#ff6600" stroke-width="1"/>
+  <text x="330" y="562" font-family="Arial" font-size="12" text-anchor="start">Non-shared Components</text>
+  
+  <rect x="500" y="550" width="20" height="15" fill="#c6ecc6" stroke="#339933" stroke-width="1"/>
+  <text x="530" y="562" font-family="Arial" font-size="12" text-anchor="start">Shared Components</text>
+</svg>
