@@ -1,8 +1,5 @@
 # Ideas
 
-
-
-
 ## Defect [Saif to add more]
 
 ### Business Use Case
@@ -18,22 +15,23 @@
 ## Defect [Saif to add more]
 
 ### Business Use Case
-- 
+
+-
 
 ### AI Concept
 
-- 
+-
 
 ## Diagnosis Automation [Saif to add more]
 
 - Guide user for next course of action.
 - Ability to read the OEM manuals
-- Understand the 
+- Understand the
 - Store and use the past experiences.
 
 ### AI Concept
 
-- 
+-
 
 ## Insurance Chatbot [Neeti to add more]
 
@@ -42,7 +40,7 @@
 - Bot Assistant
 - Bot needs to interact via voice
 - Log archival of conversation
-- 
+-
 
 ### AI Concept
 
@@ -51,8 +49,8 @@
 
 ### Tech Stack
 
-- 
-- 
+-
+-
 
 ## Art Jarvis [Neeti to add more]
 
@@ -75,3 +73,12 @@
 
 ### AI Concept
 
+-
+
+## Interior Design Recommender
+
+### Business Use Case
+
+-
+
+### AI Concept
