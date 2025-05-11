@@ -1,0 +1,11 @@
+[project]
+name = "prof-notebook-shap"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "ipykernel>=6.29.5",
+    "matplotlib>=3.9.4",
+    "shap>=0.46.0",
+]

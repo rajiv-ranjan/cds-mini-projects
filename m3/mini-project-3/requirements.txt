@@ -1,0 +1,7 @@
+# Dependencies for Sagemaker Studiolab
+!pip3 install keras
+!pip3 install tensorflow
+!pip install opencv-python-headless
+!pip install moviepy
+!apt update
+!apt-get install -y libglib2.0-0 libsm6 libxrender1 libxext6
