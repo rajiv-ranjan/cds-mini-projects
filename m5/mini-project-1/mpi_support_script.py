@@ -125,3 +125,87 @@ def calculate_rmse(y_true, y_pred):
     rmse_value_2 = np.sqrt(mean_squared_error(y_true, y_pred))
     rmse_value_2
     return rmse_value_1
+
+from sklearn.utils import shuffle
+
+
+def train_test_split(X, Y, train_size=0.7):
+    X, Y = shuffle(X, Y, random_state=42)
+    split_index = int(len(X) * train_size)
+
+    # Split the data into train and test sets
+    X_train, X_test = X[:split_index], X[split_index:]
+    Y_train, Y_test = Y[:split_index], Y[split_index:]
+
+    return X_train, X_test, Y_train, Y_test
+from mpi4py import MPI
+
+
+# Defining a function
+def create_comm():
+    # Creating a Communicator
+    comm = MPI.COMM_WORLD
+    # number of the process running the code
+    rank = comm.Get_rank()
+    # total number of processes running
+    size = comm.Get_size()
+    # Displaying the rank and size of the communicator
+    print("Rank: {}, Size: {}".format(rank, size))
+    return comm, rank, size
+
+
+# comm,rank,size = create_comm()
+
+
+def dividing_data(x_train, y_train, size_of_workers):
+    # Size of the slice
+    slice_for_each_worker = int(
+        Decimal(x_train.shape[0] / size_of_workers).quantize(
+            Decimal("1."), rounding=ROUND_HALF_UP
+        )
+    )
+    print("Slice of data for each worker: {}".format(slice_for_each_worker))
+    # YOUR CODE HERE
+    # Dividing the data into slices
+    x_train_slices = []
+    y_train_slices = []
+    for i in range(size_of_workers):
+        start_index = i * slice_for_each_worker
+        end_index = (
+            (i + 1) * slice_for_each_worker
+            if i != size_of_workers - 1
+            else x_train.shape[0]
+        )
+        x_train_slices.append(x_train[start_index:end_index])
+        y_train_slices.append(y_train[start_index:end_index])
+    return x_train_slices, y_train_slices
+
+
+def get_data_for_worker(rank, x_train_slices, y_train_slices):
+    # Getting the data for the worker
+    x_train = x_train_slices[rank]
+    y_train = y_train_slices[rank]
+    return x_train, y_train
+
+
+# def get_data_for_all_workers(x_train_slices, y_train_slices):
+#     # YOUR CODE HERE
+#     # Getting the data for all workers
+#     x_train = []
+#     y_train = []
+#     for i in range(len(x_train_slices)):
+#         x_train.append(x_train_slices[i])
+#         y_train.append(y_train_slices[i])
+#     return x_train, y_train
+
+
+# YOUR CODE HERE
+def prepare_data_for_workers(X, Y, size_of_workers, rank, train_size=0.7):
+    if rank == 0:
+        X_train, X_test, Y_train, Y_test = train_test_split(X, Y, train_size)
+        # Preparing the data for workers
+        x_train_slices, y_train_slices = dividing_data(
+            X_train, Y_train, size_of_workers
+        )
+        # x_train, y_train = get_data_for_worker(rank, x_train_slices, y_train_slices)
+    return x_train_slices, y_train_slices
