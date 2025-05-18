@@ -35,9 +35,6 @@ FILENAME = "PowerPlantData.csv"  # File path
 # YOUR CODE HERE to Define a function to load the data
 # Function to load the data
 def load_data(file_path):
-    """
-    Function to load the data from the given file path
-    """
     # Load the data into a pandas DataFrame
     data = pd.read_csv(file_path, header=0, sep=",", engine="python")
 
@@ -57,30 +54,21 @@ def load_data(file_path):
 
 
 def clean_data(df):
-    """
-    Function to clean the data
-    """
-    print("before dropping missing values: {}".format(df.shape))
+    # print("before dropping missing values: {}".format(df.shape))
     df_ = df.dropna().reset_index(drop=True)  # Drop rows with missing values
-    print("after dropping missing values {}".format(df_.shape))
+    # print("after dropping missing values {}".format(df_.shape))
     df_ = df.drop_duplicates().reset_index(drop=True)
-    print("after dropping duplicate values {}".format(df_.shape))
+    # print("after dropping duplicate values {}".format(df_.shape))
     return df_
 
 
 def scale_data(df):
-    """
-    Function to standardize the data
-    """
     # Standardizing the data
     df_ = (df - df.mean()) / df.std()
     return df_
 
 
 def split_data_into_X_and_Y(df):
-    """
-    Function to split the data into X and Y
-    """
     # Extracting the target column as Y and remaining columns as X
     target_column = "EnergyOutput"  # Replace with the name of your target column
     X = df.drop(columns=[target_column])  # Features
@@ -99,9 +87,9 @@ def estimate_coefficients(X, Y):
 def fit(x, y):
     # YOUR CODE HERE
     # Add a column of ones to X for the intercept term
-    print(x, x.shape)
+    # print(x, x.shape)
     x = np.hstack((np.ones((x.shape[0], 1)), x))
-    print(x, x.shape)
+    # print(x, x.shape)
     coefficients = estimate_coefficients(x, y)
     return coefficients
 
@@ -164,7 +152,7 @@ def dividing_data(x_train, y_train, size_of_workers):
             Decimal("1."), rounding=ROUND_HALF_UP
         )
     )
-    print("Slice of data for each worker: {}".format(slice_for_each_worker))
+    # print("Slice of data for each worker: {}".format(slice_for_each_worker))
     # YOUR CODE HERE
     # Dividing the data into slices
     x_train_slices = []

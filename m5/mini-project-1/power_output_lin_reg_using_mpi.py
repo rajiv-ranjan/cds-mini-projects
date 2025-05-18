@@ -22,6 +22,7 @@ from mpi4py import MPI
 
 
 def main():
+    rmse_value_1 = 0.26752544372182074
     comm, rank, size = create_comm()
 
     download_and_unzip(
@@ -29,16 +30,11 @@ def main():
         url="https://cdn.iisc.talentsprint.com/CDS/Datasets/PowerPlantData.csv",
     )
 
-    # x_train_slices = [None] * size
-    # y_train_slices = [None] * size
-
-    # # receive_x_train = np.empty(100000, dtype="d")
-    # # receive_y_train = np.empty(100000, dtype="d")
-    # receive_x_train = [None] * 100000
-    # receive_y_train = [None] * 100000
-
-    # receive_y_train = np.empty(100000, dtype="d")
     slice_shapes = None
+    receive_x_train = None
+    receive_y_train = None
+    x_train_slices = []
+    y_train_slices = []
 
     if rank == 0:
         df = load_data(FILENAME)
@@ -49,69 +45,43 @@ def main():
 
         X, Y = split_data_into_X_and_Y(df)
 
-        coefficients = fit(X, Y)
-        c = coefficients[0]
-        m = coefficients[1:]
-
         x_train_slices, y_train_slices = prepare_data_for_workers(X, Y, size, rank)
 
-        x_train_slices = [df_slice.to_numpy() for df_slice in x_train_slices]
-        y_train_slices = [y_slice.to_numpy() for y_slice in y_train_slices]
+        print(
+            f"type of x_train_slices is {type(x_train_slices)} and length is {len(x_train_slices)}"
+        )
+        print(x_train_slices)
+        print(
+            f"type of x_train_slices is {type(x_train_slices)} and length is {len(x_train_slices)}"
+        )
+        print(x_train_slices)
 
-        # Find the shape of each slice (they should be equal except maybe the last)
-        slice_shapes = [arr.shape for arr in x_train_slices]
-        print("slide shape: {slice_shapes}")  # For debugging
+    receive_x_train = comm.scatter(x_train_slices, root=0)
+    receive_y_train = comm.scatter(y_train_slices, root=0)
 
-        print(type(x_train_slices))
-        print(type(y_train_slices))
-    else:
-        # Initialize empty arrays for x_train_slices and y_train_slices
-        x_train_slices = None
-        y_train_slices = None
+    fitted_coefficients = fit(receive_x_train, receive_y_train)
 
-    # For 2 processes, e.g. shape might be [(3334, 4), (3333, 4)]
-    # Let's assume all but the last are the same length: slice_len = x_train_slices[0].shape[0]
-    # slice_len = x_train_slices[0].shape[0]
-    # n_features = x_train_slices[0].shape[1]
+    all_coefficients = comm.gather(fitted_coefficients, root=0)
 
-    slice_len = 100000
-    n_features = 100000
+    comm.Barrier()  # Ensure all processes are synchronized
 
-    # Prepare receive buffers
-    receive_x_train = np.empty((slice_len, n_features), dtype=np.float64)
-    receive_y_train = np.empty((slice_len,), dtype=np.float64)
+    if rank == 0:
+        print(f"length of all coefficients: {len(all_coefficients)}")
 
-    # Scatter using sendbuf and recvbuf
+        # Combine the coefficients from all processes
+        combined_coefficients = np.mean(all_coefficients, axis=0)
+        print("Combined Coefficients:", combined_coefficients)
 
-    comm.Scatter(x_train_slices, receive_x_train, root=0)
-    comm.Scatter(y_train_slices, receive_y_train, root=0)
+        final_intercept = combined_coefficients[0]
+        final_coefficients = combined_coefficients[1:]
+        print("Final Intercept:", final_intercept)
+        print("Final Coefficients:", final_coefficients)
 
-    # comm.Scatter(x_train_slices, receive_x_train, root=0)
-    # comm.Scatter(y_train_slices, receive_y_train, root=0)
-
-    print("RANK:{rank} shape of receive_x_train: {receive_x_train.shape}")
-    print("RANK:{rank} shape of receive_y_train: {receive_y_train.shape}")
-
-    # Scatter the data to all workers
-    # x_train, y_train = scatter_data(comm, x_train_slices, y_train_slices, numDataPerRank)
-    # Gather the data from all workers
-    # x_train_slices, y_train_slices = gather_data(comm, x_train, y_train)
-
-    # predicted_value = predict(X, c, m)
-
-    # calculate_rmse(Y, predicted_value)
-
-    # Load the data
-    # df = load_data(FILENAME)
-    # print(comm, rank, size)
-    # # Clean the data
-    # df = clean_data(df)
-    # # Scale the data
-    # df = scale_data(df)
-    # # Split the data into X and Y
-    # X, Y = split_data_into_X_and_Y(df)
-    # # Prepare the data for workers
-    # x_train_slices, y_train_slices = prepare_data_for_workers(X, Y, size, rank)
+        # Calculate RMSE
+        Y_pred = predict(X, final_intercept, final_coefficients)
+        rmse_value_2 = calculate_rmse(Y, Y_pred)
+        print("RMSE value without parallel execution:", rmse_value_1)
+        print("RMSE value with parallel execution:", rmse_value_2)
 
 
 main()
