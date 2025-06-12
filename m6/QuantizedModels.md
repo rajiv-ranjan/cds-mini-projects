@@ -2,6 +2,8 @@
 
 ## Is there an alternative of bitsandbytes that I can use instead to run on macOS?
 
+> Response from Google Gemini
+
 Excellent question. This is a key challenge for anyone wanting to run large models on Apple Silicon, and you've hit upon the central issue: `bitsandbytes` is CUDA-based and doesn't work on Macs.
 
 The short answer is: **Yes, there is a fantastic alternative.** The most popular and effective way to run large, quantized models on macOS is by using the **GGUF format** with the **`llama.cpp`** engine.
