@@ -38,10 +38,11 @@
     k=5,
     #filter={"source":'/content/pca_d1.pdf'} # manually passing metadata, using metadata filter.
     filter={"source":'/content/ens_d1.pdf'}
+    )
   ```
   
+- `TODO` BitsAndSytes can't work with macOS. We found that GGUF format and llama.cpp is superior way to run quantized model on macOS and other strong CPUs. Explore and write code to make it work. Read another md file [here](QuantizedModels.md).
 
-)
 
 ## Key Packages
 
