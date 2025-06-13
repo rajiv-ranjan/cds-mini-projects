@@ -1,0 +1,5 @@
+Feature,BAAI/bge-small-en-v1.5,sentence-transformers/all-mpnet-base-v2,sentence-transformers/all-MiniLM-L6-v2
+Overall Quality,Excellent (Top-Tier),Excellent (Classic Top-Tier),Very Good (Baseline)
+Speed & Size,Fast & Small (~130 MB),Slow & Large (~420 MB),Fastest & Smallest (~87 MB)
+Key Feature,Needs a specific query instruction for best performance.,"High quality, simple to use.","The fastest, most lightweight option."
+Best For...,Modern RAG apps. The best balance of top-tier performance and high speed.,Production apps where quality is paramount and speed is a secondary concern.,"Rapid development, testing, or resource-constrained environments."

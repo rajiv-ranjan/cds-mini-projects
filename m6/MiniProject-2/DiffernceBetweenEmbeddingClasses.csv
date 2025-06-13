@@ -1,0 +1,5 @@
+Aspect,LangchainEmbedding(...),HuggingFaceEmbeddings()
+Primary Ecosystem,LlamaIndex,LangChain
+Class Origin,llama_index.embeddings.langchain,langchain_huggingface (or older langchain_community)
+Purpose/Role,An adapter to make a LangChain embedding object work inside LlamaIndex.,A native component for use directly within LangChain workflows.
+Underlying Model,BAAI/bge-small-en-v1.5 (because you explicitly passed it in).,all-MiniLM-L6-v2 (because it's the default when no model is specified).
