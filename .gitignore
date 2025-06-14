@@ -182,3 +182,5 @@ Actions_temp
 *.npy
 m5/mini-project-2/Dask_MP_dataset.csv
 *.env-secret
+*.env-secret*
+m6/Self-Learning-1/.env.debug
