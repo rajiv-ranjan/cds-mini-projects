@@ -181,3 +181,4 @@ Actions_temp
 
 *.npy
 m5/mini-project-2/Dask_MP_dataset.csv
+*.env-secret
