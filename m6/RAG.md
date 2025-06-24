@@ -43,6 +43,21 @@
   
 - `TODO` BitsAndSytes can't work with macOS. We found that GGUF format and llama.cpp is superior way to run quantized model on macOS and other strong CPUs. Explore and write code to make it work. Read another md file [here](QuantizedModels.md).
 
+- **The Modern "Rule of Thumb" for LangChain Imports**
+The LangChain library was split into several packages to make it more modular. Here’s a simple way to remember where to import from:
+
+  - **Core Abstractions** (`langchain-core`): For the fundamental building blocks of LangChain that don't require third-party libraries.
+
+    - Imports from: `langchain_core`
+    - Examples: Prompts (ChatPromptTemplate), Output Parsers (StrOutputParser), Runnables (RunnablePassthrough), Messages (HumanMessage).
+  - **Dedicated Partner Integrations** (`langchain-<partner>`): For major partners that have their own dedicated package. This is the preferred way to use these integrations.
+    - Imports from: `langchain_openai`, `langchain_ollama`, `langchain_huggingface`, etc.
+    - Examples: ChatOpenAI, ChatOllama.
+  - **Community Integrations** (`langchain-community`): For the vast collection of other third-party tools.
+
+    - Imports from: `langchain_community`
+    - Examples: Document Loaders (CSVLoader, PyPDFLoader), Vector Stores (FAISS, Chroma), other LLMs and tools.
+
 
 ## Key Packages
 
