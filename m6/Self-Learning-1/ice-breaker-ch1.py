@@ -7,6 +7,7 @@ from langchain_openai import ChatOpenAI
 from langchain_ollama import ChatOllama
 from langchain_core.output_parsers import StrOutputParser
 
+
 def load_configs_and_secrets():
     # load_dotenv(dotenv_path=".env-secret")
     # load_dotenv(dotenv_path=".env-shared")
@@ -19,6 +20,7 @@ def load_configs_and_secrets():
         # **os.environ,  # override loaded values with environment variables
     }
     return config
+
 
 def chat_with_AI(choice, chain_collection, information):
     chosen_chain = None
@@ -38,13 +40,14 @@ def chat_with_AI(choice, chain_collection, information):
     except httpx.HTTPStatusError as e:
         print("HTTP error occurred:", e)
     except Exception as e:
-        print("An unexpected error occurred:", e)    
+        print("An unexpected error occurred:", e)
+
 
 def main():
     # read the documentation at https://pypi.org/project/python-dotenv/
-    
+
     load_configs_and_secrets()
-    
+
     print(f"LANGCHAIN_TRACING_V2: {os.getenv('LANGCHAIN_TRACING_V2')}")
 
     information = """
@@ -66,26 +69,35 @@ In October 2002, eBay acquired PayPal for $1.5 billion, and that same year, with
         input_variables=["information"], template=summary_template
     )
 
-    llm_OpenAI = ChatOpenAI(model="gpt-3.5-turbo",
-            temperature=0,
-            max_tokens=None,
-            max_retries=2)
+    llm_OpenAI = ChatOpenAI(
+        model="gpt-3.5-turbo", temperature=0, max_tokens=None, max_retries=2
+    )
     llm_Ollama_llama3 = ChatOllama(model="llama3", temperature=0)
     llm_Ollama_mistral = ChatOllama(model="mistral", temperature=0)
     # llm_Ollama = ChatOllama(temperature=0, model_name="llama3.1", base_url="http://localhost:11434")
     # llm_Ollama = ChatOllama(temperature=0, model_name="llama3.1", base_url="http://localhost:11434", request_timeout=60)
-    
-    
+
     chain_OpenAI = summary_prompt_template | llm_OpenAI | StrOutputParser()
-    chain_Ollama_llama3 = summary_prompt_template | llm_Ollama_llama3 | StrOutputParser()
-    chain_Ollama_mistral = summary_prompt_template | llm_Ollama_mistral | StrOutputParser()
-    chain_collection={ "O": chain_OpenAI, "L": chain_Ollama_llama3,"M": chain_Ollama_mistral }
+    chain_Ollama_llama3 = (
+        summary_prompt_template | llm_Ollama_llama3 | StrOutputParser()
+    )
+    chain_Ollama_mistral = (
+        summary_prompt_template | llm_Ollama_mistral | StrOutputParser()
+    )
+    chain_collection = {
+        "O": chain_OpenAI,
+        "L": chain_Ollama_llama3,
+        "M": chain_Ollama_mistral,
+    }
 
-    chat_with_AI_Choice = input("Do you want to use OpenAI or Ollama? (O for OpenAI, L for Ollama, M for Mistral): ").strip().upper()
+    chat_with_AI_Choice = (
+        input(
+            "Which model do you want to invoke? (O for OpenAI, L for Ollama, M for Mistral): "
+        )
+        .strip()
+        .upper()
+    )
     chat_with_AI(chat_with_AI_Choice, chain_collection, information)
-    
-    
-
 
 
 if __name__ == "__main__":
