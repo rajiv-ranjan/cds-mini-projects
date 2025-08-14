@@ -184,3 +184,6 @@ m5/mini-project-2/Dask_MP_dataset.csv
 *.env-secret
 *.env-secret*
 m6/Self-Learning-1/.env.debug
+
+m7/mp-1/.env-secert
+m7/mp-1/rajranja@redhat.com-token.json
